@@ -41,7 +41,7 @@ module.exports = {
         SSL_KEY_PATH: '/etc/letsencrypt/live/socket.sansoohan.ga/privkey.pem',
         SSL_CERT_PATH: '/etc/letsencrypt/live/socket.sansoohan.ga/fullchain.pem',
         HTTPS_HOST: '0.0.0.0',
-        PORT: 4000
+        PORT: 4433
       },
     },
     {
@@ -60,7 +60,7 @@ module.exports = {
         SSL_KEY_PATH: '/etc/letsencrypt/live/socket.sansoohan.ga/privkey.pem',
         SSL_CERT_PATH: '/etc/letsencrypt/live/socket.sansoohan.ga/fullchain.pem',
         HTTPS_HOST: '0.0.0.0',
-        PORT: 4040
+        PORT: 44333
       },
     }
   ],
