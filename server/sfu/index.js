@@ -16,8 +16,8 @@ if (process.env.HTTPS_HOST) {
     const base = process.env.HTTPS_HOST;
     const PORT = Number(process.env.PORT) || 443;
     server = require('https').createServer({
-        cert: fs.readFileSync(`${__dirname}/certs/${base}.crt`),
-        key: fs.readFileSync(`${__dirname}/certs/${base}.key`),
+        cert: fs.readFileSync(process.env.SSL_CERT_PATH),
+        key: fs.readFileSync(process.env.SSL_KEY_PATH),
     }, app);
     console.log(`Listening for HTTPS on ${process.env.HTTPS_HOST || '0.0.0.0'}:${PORT}`);
     server.listen(PORT, process.env.HTTPS_HOST);
@@ -30,7 +30,7 @@ else {
     server.listen(PORT, process.env.HOST);
 }
 
-const exst = express.static(`${__dirname}/../app`);
+const exst = express.static(`${__dirname}/../../app`);
 app.use('/', exst);
 if (process.env.INGRESS_PATH) {
     console.log(`Enabling INGRESS_PATH ${process.env.INGRESS_PATH}`);
