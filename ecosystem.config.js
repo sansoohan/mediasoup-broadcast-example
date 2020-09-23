@@ -43,6 +43,25 @@ module.exports = {
         HTTPS_HOST: '0.0.0.0',
         PORT: 4000
       },
+    },
+    {
+      name: 'socket',
+      script: 'server/socket/index.js',
+      instances: 1,
+      autorestart: true,
+      watch: true,
+      max_memory_restart: '1G',
+      env: {
+        NODE_ENV: 'development',
+        PORT: 8080
+      },
+      env_production: {
+        NODE_ENV: 'production',
+        SSL_KEY_PATH: '/etc/letsencrypt/live/socket.sansoohan.ga/privkey.pem',
+        SSL_CERT_PATH: '/etc/letsencrypt/live/socket.sansoohan.ga/fullchain.pem',
+        HTTPS_HOST: '0.0.0.0',
+        PORT: 4040
+      },
     }
   ],
   deploy : {
