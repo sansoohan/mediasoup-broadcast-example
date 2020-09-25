@@ -1,6 +1,5 @@
 'use strict';
-const querystring = require('querystring');
-const url = require('url');
+
 const crypto = require('crypto');
 
 const SEND_PASSWORD = process.env.SEND_PASSWORD || 'ChangeMe';
@@ -27,7 +26,7 @@ function getTurnServers(urls, key) {
     // No credentials;
     return [{urls: urls}];
   }
-};
+}
 
 
 function getPayload(kind) {

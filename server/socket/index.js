@@ -10,16 +10,21 @@ const wss = new WebSocket.Server({
   keepaliveInterval : 60000
 });
 
+function noop() {
+  // Do nothing.
+}
+
+// eslint-disable-next-line no-unused-vars
 const pinger = setInterval(function ping() {
   // Ping all the clients to see if they're dead.
   wss.clients.forEach(function each(ws) {
-      if (ws.isAlive === false) {
-          // Dead for a whole cycle, so close.
-          return ws.terminate();
-      }
-      // Mark as dead until we know otherwise.
-      ws.isAlive = false;
-      ws.ping(noop);
+    if (ws.isAlive === false) {
+        // Dead for a whole cycle, so close.
+        return ws.terminate();
+    }
+    // Mark as dead until we know otherwise.
+    ws.isAlive = false;
+    ws.ping(noop);
   })
 }, 30000);
 
@@ -31,8 +36,7 @@ app.get('/', function (req, res) {
 });
 let server;
 if (process.env.HTTPS_HOST) {
-    // HTTPS server.
-    const base = process.env.HTTPS_HOST;
+    // HTTPS server.    
     const PORT = Number(process.env.PORT) || 4040;
     server = require('https').createServer({
         cert: fs.readFileSync(process.env.SSL_CERT_PATH),

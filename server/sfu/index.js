@@ -13,7 +13,6 @@ let server;
 
 if (process.env.HTTPS_HOST) {
   // HTTPS server.
-  const base = process.env.HTTPS_HOST;
   const PORT = Number(process.env.PORT) || 443;
   server = require('https').createServer({
     cert: fs.readFileSync(process.env.SSL_CERT_PATH),
@@ -45,6 +44,7 @@ function heartbeat() {
 function noop() {
   // Do nothing.
 }
+// eslint-disable-next-line no-unused-vars
 const pinger = setInterval(function ping() {
   // Ping all the clients to see if they're dead.
   wss.clients.forEach(function each(ws) {
@@ -96,7 +96,7 @@ server.on('upgrade', function upgrade(req, socket, head) {
     ws.onerror = function onError(event) {
       console.log(addr, 'error', event.message, event.error);
     };
-    ws.onclose = function onClose(event) {
+    ws.onclose = function onClose() {
       console.log(addr, 'closed');
     };
   });

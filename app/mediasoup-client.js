@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
  * mediasoup-client v2.4.12
  * mediasoup client side JavaScript SDK

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 var ws;
 var room;

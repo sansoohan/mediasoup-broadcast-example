@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 var ms = window.mediasoupClient;
 var autoAdjustProfile;
@@ -31,7 +32,7 @@ function showResolution(video) {
         autoAdjustProfile(video.videoWidth, video.videoHeight);
       }
     }
-  };
+  }
   doShowResolution();
   showResolutionInterval = setInterval(doShowResolution, 1000);
 }
@@ -64,6 +65,7 @@ function setVideoSource(video, streamOrUrl) {
       try {
         video.srcObject = null;
       }
+      // eslint-disable-next-line no-empty
       catch (e) {}
       video.style.background = 'blue';
       video.load();
@@ -177,7 +179,7 @@ function pubsubClient(channel, password, isPublisher) {
       // FIXME: Send your own connection-initiation packet.
       wsSend({type: 'MS_SEND', payload: {kind: kind, password: password}, meta: {id: reqid, channel: channel}});
     };
-    ws.onclose = function onClose(event) {
+    ws.onclose = function onClose() {
       if (room) {
         room.leave();
       }

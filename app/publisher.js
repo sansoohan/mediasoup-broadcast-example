@@ -1,3 +1,6 @@
+/* eslint-disable no-inner-declarations */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 'use strict';
 var ws;
 var room;
@@ -64,12 +67,12 @@ var capturing = {};
 function hookup(capturing, newStream, newVideoStream) {
   var vtrack = capturing.stream.getVideoTracks();
   if (capturing.video && vtrack.length > 0) {
-    for (var track of newStream.getVideoTracks()) {
+    for (const track of newStream.getVideoTracks()) {
       track.stop();
     }
     newStream.addTrack(vtrack[0]);
     if (newVideoStream) {
-      for (var track of newVideoStream.getVideoTracks()) {
+      for (const track of newVideoStream.getVideoTracks()) {
         track.stop();
       }
       newVideoStream.addTrack(vtrack[0]);
@@ -77,7 +80,7 @@ function hookup(capturing, newStream, newVideoStream) {
   }
   var atrack = capturing.stream.getAudioTracks();
   if (capturing.audio && atrack.length > 0) {
-    for (var track of newStream.getAudioTracks()) {
+    for (const track of newStream.getAudioTracks()) {
       track.stop();
     }
     newStream.addTrack(atrack[0]);
@@ -93,10 +96,10 @@ function stopCaptureStreams() {
     }
     var stream = capturing[src].stream;
     if (stream) {
-    for (var track of stream.getAudioTracks()) {
+    for (const track of stream.getAudioTracks()) {
       track.stop();
     }
-    for (var track of stream.getVideoTracks()) {
+    for (const track of stream.getVideoTracks()) {
       track.stop();
     }
   }
@@ -168,7 +171,7 @@ function captureStreams() {
         }
         whenStreamIsActive(function getTagStream() { return capturing.tag.stream }, hookupTag);
       }
-    };
+    }
     captureTag();
   }
   else {
