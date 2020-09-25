@@ -48,3 +48,20 @@ else {
     console.log(`Listening for HTTP on ${process.env.HOST || '0.0.0.0'}:${PORT}`);
     server.listen(PORT, process.env.HOST);
 }
+
+
+
+server.on('connection', ws => {
+  ws.on('message', message => {
+      console.log(message);
+      server.clients.forEach(client => {
+          client.send(message);
+      });
+  });
+
+  
+
+  ws.on('close', () => {
+      console.log('close');
+  });
+});

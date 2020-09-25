@@ -5,12 +5,12 @@ MAINTAINER Michael FIG <michael+coturn@fig.org>
 RUN ln -s -f /bin/true /usr/bin/chfn
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y \
-            coturn \
-            curl \
-            procps \
-            --no-install-recommends
+  DEBIAN_FRONTEND=noninteractive \
+  apt-get install -y \
+    coturn \
+    curl \
+    procps \
+    --no-install-recommends
 
 ADD turnserver.sh /turnserver.sh
 ADD turnserver.conf.in /turnserver.conf.in
