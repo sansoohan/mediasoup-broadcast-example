@@ -31,9 +31,13 @@ const pinger = setInterval(function ping() {
 
 
 const app = express();
-app.get('/', function (req, res) {
-  res.send('Server is running!');
-});
+const exst = express.static(`${__dirname}/../../app`);
+app.use('/', exst);
+if (process.env.INGRESS_PATH) {
+  console.log(`Enabling INGRESS_PATH ${process.env.INGRESS_PATH}`);
+  app.use(process.env.INGRESS_PATH, exst);
+}
+
 let server;
 if (process.env.HTTPS_HOST) {
     // HTTPS server.    

@@ -119,7 +119,10 @@ function pubsubClient(channel, password, isPublisher) {
       wsurl = window.location.href.replace(/^http/, 'ws')
         .replace(/^(wss?:\/\/.*)\/.*$/, '$1') + '/pubsub';
     }
-    
+
+    wsurl = wsurl.replace(/:8000/g, isPublisher ? ':80' : ':800')
+    wsurl = wsurl.replace(/:44333/g, isPublisher ? ':443' : ':4433')
+
     var ws = new WebSocket(wsurl);
     var connected = false;
     var peerName = isPublisher ? 'publisher' : '' + Math.random();
